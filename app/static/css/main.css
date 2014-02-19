@@ -1,0 +1,38 @@
+#lightbox {
+    display: none;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    padding: 100px;
+    position: fixed;
+    z-index: 85;
+    background: rgba(0,0,0,.6);
+}
+
+.messageBox {
+    padding-top: 60px;
+    text-align: center;
+}
+
+
+#shareImageContainer {
+    display: block;
+}
+
+#setStatusContainer {
+    display: none;
+}
+
+#listCustomImagesContainer {
+    display: none;
+}
+
+#footer {
+  background: black;
+  padding-top: 60px;
+  height: 100px;
+}
+
+
+

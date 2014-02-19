@@ -1,0 +1,39 @@
+
+body {
+    padding-top: 100px;
+}
+input#submit-id-submit.btn-primary {
+    margin-left: 42.8%;
+}
+
+
+.titleBox {
+    padding: 180px 100px;
+    margin-right: 100px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+input:checked + label {
+      background: #ccc;
+      color: blue;
+      border-color: #adadad;
+}
+
+#messageBox {
+    height: 250px;
+    margin: 11% 15%;
+}
+
+#exitButton {
+   width: 90px;
+   height: 50px;
+   border: 1px solid white;
+   border-radius: 4px;
+   padding-top: 15px;
+   color: black;
+   background: white;
+   text-align: center;
+   margin-left: 80%;
+   }

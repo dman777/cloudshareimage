@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<! -- Tron Team 2013 -->
+<html lang="en">
+    <head>
+        <link rel="icon" href="static/pics/favicon.ico">
+        <link rel="stylesheet" href="static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/css/override.css">
+        <link rel="stylesheet" href="static/css/main.css">
+    </head>
+    <header>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"></span>Image Share<sup>beta 1.0</sup></a>
+</div>
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+        <li><a id="shareImage" href="#">Share Image</a></li>
+        <li><a id="setSatus" href="#">Set Status(consumer)</a></li>
+        <li><a id="listCustomImages" href="#">List Custom Images</a></li>
+        <li><a id="listAllImages" href="#">List All Images</a></li>
+        <li><a id="imageDetail" href="#">Show Image Detail</a></li>
+    </ul>
+</div><!-- /.navbar-collapse -->
+</nav>
+</header>
+
+<body class="container">
+    <div id="lightbox">
+        <div id="exitButton" type="button" class="btn btn-primary" data-toggle="button">Exit</div>
+        <div class="well col-lg-8" id="messageBox">
+            <h3 class="messageBox" >Performing operation...</h3>
+        </div>
+    </div>
+    <div id="shareImageContainer">
+        <div class="well col-md-3 titleBox">
+            <div>
+                <h1>Share Image<br><small>Share image all in one step</small></h1>
+            </div>
+        </div>
+        <form id="shareImageForm">
+            <div class="form-group btn-group-ls well col-md-5">
+                <legend>Region</legend>
+                <input class="form-inline" type="radio" name="region" id="IAD0" value="IAD" checked>
+                <label for="IAD0" class="btn btn-default region">Virginia</label>
+                <input class="form-inline" type="radio" name="region" id="ORD0" value="ORD">
+                <label for="ORD0" class="btn btn-default region">Chicago</label>
+                <input class="form-inline" type="radio" name="region" id="DFW0" value="DFW">
+                <label for="DFW0" class="btn btn-default region">Dallas</label>
+                <input type="radio" id="HKG0" name="region" value="HKG">
+                <label for="HKG0" class="btn btn-default region">Hong Kong</label>
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="producerUsername">Producer Username</label>
+                <input type="text" class="form-control" name="producer_username" id="producerUsername" placeholder="Enter producer's username" >
+                <label for="producerApiKey">Producer Api Key</label>
+                <input type="text" class="form-control" name="producer_apikey" id="producerApiKey" placeholder="Enter producer's api key" >
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="consumerUsername">Consumer Username</label>
+                <input type="text" class="form-control" name="consumer_username"id="consumerUsername" placeholder="Enter consumer's username" >
+                <label for="consumerApiKey">Consumer Api Key</label>
+                <input type="text" class="form-control" name="consumer_apikey" id="consumerApiKey" placeholder="Enter consumer's api key" >
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="imageUuid">Image UUID</label>
+                <input type="text" class="form-control" name="image_uuid" id="imageUuid" placeholder="Enter images's image Uuid" >
+            </div>
+            <div class="col-md-5">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <div id="setStatusContainer">
+        <div class="well col-md-3 titleBox">
+            <div>
+                <h1>Set Member Status<br><small>Consumer sets status of the image</small></h1>
+            </div>
+        </div>
+        <form id="setStatusForm">
+            <div class="form-group btn-group-ls well col-md-5">
+                <legend>Region</legend>
+                <input class="form-inline" type="radio" name="region" id="IAD1" value="IAD" checked>
+                <label for="IAD1" class="btn btn-default">Virginia</label>
+                <input class="form-inline" type="radio" name="region" id="ORD1" value="ORD">
+                <label for="ORD1" class="btn btn-default">Chicago</label>
+                <input class="form-inline" type="radio" name="region" id="DFW1" value="DFW">
+                <label for="DFW1" class="btn btn-default">Dallas</label>
+                <input type="radio" id="HKG1" name="region" value="HKG">
+                <label for="HKG1" class="btn btn-default">Hong Kong</label>
+            </div>
+            <div class="form-group btn-group-ls well col-md-5">
+                <legend>Member Status</legend>
+                <input class="form-inline" type="radio" name="member_status" id="accepted" value="accepted" checked>
+                <label for="accepted" class="btn btn-default">Accepted</label>
+                <input class="form-inline" type="radio" name="member_status" id="rejected" value="rejected">
+                <label for="rejected" class="btn btn-default">Rejected</label>
+                <input class="form-inline" type="radio" name="member_status" id="pending" value="pending">
+                <label for="pending" class="btn btn-default">Pending</label>
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="consumerUsername">Consumer Username</label>
+                <input type="text" class="form-control" name="consumer_username"id="consumerUsername" placeholder="Enter consumer's username" >
+                <label for="consumerApiKey">Consumer Api Key</label>
+                <input type="text" class="form-control" name="consumer_apikey" id="consumerApiKey" placeholder="Enter consumer's api key" required>
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="imageUuid">Image UUID</label>
+                <input type="text" class="form-control" name="image_uuid" id="imageUuid" placeholder="Enter images's image Uuid" required>
+            </div>
+            <div class="col-md-5">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <div id="listCustomImagesContainer">
+        <div class="well col-md-3 titleBox">
+            <div>
+                <h1>List Custom Images<br><small>List custom images of an account</small></h1>
+            </div>
+        </div>
+        <form id="listCustomImagesForm">
+            <div class="form-group btn-group-ls well col-md-5">
+                <legend>Region</legend>
+                <input class="form-inline" type="radio" name="region" id="IAD2" value="IAD" checked>
+                <label for="IAD2" class="btn btn-default">Virginia</label>
+                <input class="form-inline" type="radio" name="region" id="ORD2" value="ORD">
+                <label for="ORD2" class="btn btn-default">Chicago</label>
+                <input class="form-inline" type="radio" name="region" id="DFW2" value="DFW">
+                <label for="DFW2" class="btn btn-default">Dallas</label>
+                <input type="radio" id="HKG2" name="region" value="HKG">
+                <label for="HKG2" class="btn btn-default">Hong Kong</label>
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="consumerUsername">Username</label>
+                <input type="text" class="form-control" name="producer_username"id="producerUsername" placeholder="Enter username" >
+                <label for="producerApiKey">Api Key</label>
+                <input type="text" class="form-control" name="producer_apikey" id="producerApiKey" placeholder="Enter api key" required>
+            </div>
+            <div class="col-md-5">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <div id="listAllImagesContainer">
+        <div class="well col-md-3 titleBox">
+            <div>
+                <h1>List All Images<br><small>List all images of an account</small></h1>
+            </div>
+        </div>
+        <form id="listAllImagesForm">
+            <div class="form-group btn-group-ls well col-md-5">
+                <legend>Region</legend>
+                <input class="form-inline" type="radio" name="region" id="IAD3" value="IAD" checked>
+                <label for="IAD3" class="btn btn-default">Virginia</label>
+                <input class="form-inline" type="radio" name="region" id="ORD3" value="ORD">
+                <label for="ORD3" class="btn btn-default">Chicago</label>
+                <input class="form-inline" type="radio" name="region" id="DFW3" value="DFW">
+                <label for="DFW3" class="btn btn-default">Dallas</label>
+                <input type="radio" id="HKG3" name="region" value="HKG">
+                <label for="HKG3" class="btn btn-default">Hong Kong</label>
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="consumerUsername">Username</label>
+                <input type="text" class="form-control" name="producer_username"id="producerUsername" placeholder="Enter username" >
+                <label for="producerApiKey">Api Key</label>
+                <input type="text" class="form-control" name="producer_apikey" id="producerApiKey" placeholder="Enter api key" required>
+            </div>
+            <div class="col-md-5">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <div id="imageDetailContainer">
+        <div class="well col-md-3 titleBox">
+            <div>
+                <h1>Image Detail<br><small>Show details of a single image</small></h1>
+            </div>
+        </div>
+        <form id="imageDetailForm">
+            <div class="form-group btn-group-ls well col-md-5">
+                <legend>Region</legend>
+                <input class="form-inline" type="radio" name="region" id="IAD4" value="IAD" checked>
+                <label for="IAD4" class="btn btn-default">Virginia</label>
+                <input class="form-inline" type="radio" name="region" id="ORD4" value="ORD">
+                <label for="ORD4" class="btn btn-default">Chicago</label>
+                <input class="form-inline" type="radio" name="region" id="DFW4" value="DFW">
+                <label for="DFW4" class="btn btn-default">Dallas</label>
+                <input type="radio" id="HKG4" name="region" value="HKG">
+                <label for="HKG4" class="btn btn-default">Hong Kong</label>
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="consumerUsername">Username</label>
+                <input type="text" class="form-control" name="producer_username"id="producerUsername" placeholder="Enter username" >
+                <label for="producerApiKey">Api Key</label>
+                <input type="text" class="form-control" name="producer_apikey" id="producerApiKey" placeholder="Enter api key" required>
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="imageUuid">Image UUID</label>
+                <input type="text" class="form-control" name="image_uuid" id="imageUuid" placeholder="Enter images's image Uuid" required>
+            </div>
+            <div class="col-md-5">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</body>
+<script style="text/javascript" src="static/js/main.js"></script>
+</html>
+
+
+
