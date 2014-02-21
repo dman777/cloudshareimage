@@ -6,7 +6,7 @@ from flask import request
 from flask import url_for
 
 from modules.auth import authenticate
-from modules.actions import list_all_images, images_custom_list, image_share, status_set
+from modules.actions import image_list_detail, list_all_images, images_custom_list, image_share, status_set
 
 @app.route('/')
 def index():
@@ -28,6 +28,8 @@ class Authentication(object):
                 form_data['consumer_username'], form_data['consumer_apikey'], form_data['region'])
         if form_data.get('region', None):
             self.region = form_data['region']
+        if form_data.get('consumer_tenantid', None):
+            self.producer_data = form_data['consumer_tenantid']
         if form_data.get('image_uuid', None):
             self.args["uuid"] = form_data['image_uuid']
         if form_data.get('member_status', None):
@@ -124,9 +126,28 @@ class imageDetailForm(MethodView, Authentication):
         print self.producer_data
         if response:
             return response
-        response = images_custom_list(self.args,
+        response = image_list_detail(self.args,
                 self.producer_data)
         if response:
             return response
-app.add_url_rule('/imagedetailform', view_func=ListAllImagesForm.as_view('imagedetailform'))
+app.add_url_rule('/imagedetailform', view_func=imageDetailForm.as_view('imagedetailform'))
+
+class AddMemberForm(MethodView, Authentication):
+    def __init__(self):
+        Authentication.__init__(self, request)
+
+    def get(self):
+        pass
+    
+    def post(self):
+        response = self.check_auth()
+        print self.producer_data
+        if response:
+            return response
+        response = member_add(self.args,
+                self.producer_data)
+        if response:
+            return response
+app.add_url_rule('/addimageform', view_func=AddMemberForm.as_view('addimageform'))
+
 

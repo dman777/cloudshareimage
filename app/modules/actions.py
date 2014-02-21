@@ -30,7 +30,7 @@ def images_custom_list(args, producer_data):
             return json.dumps(
                     { "custom-images": temp_image_list }, indent=2)
     elif r.status_code:
-        message = "Error! Http status code {}".format(status_code)
+        message = "Error! Http status code {}".format(r.status_code)
              
 
 def image_list_detail(args, producer_data):
@@ -38,8 +38,14 @@ def image_list_detail(args, producer_data):
 
     uuid = args['uuid']
     url = url + "/" + uuid
-    body, status_code = do_request(url, token)
-    print body
+    r = do_raw_request(url, token)
+    if r.status_code == 200:
+        return json.dumps(
+                { "image-detail": r.json() }, indent=2)
+    elif r.status_code:
+        message = "Error! Http status code {}".format(r.status_code)
+    return json.dumps({ "message" : message })
+
 
 
 def member_add(args, producer_data,
@@ -100,7 +106,7 @@ def image_share(args, producer_data, consumer_data):
     if status_code == 200:
         message = "Success!"
     else:
-        message = "Error! Http status code {}".format(status_code)
+        message = "Error! Http status code {}".format(r.status_code)
     return json.dumps({ "message" : message })
 
 def raw_list(function):
@@ -115,7 +121,7 @@ def raw_list(function):
             return json.dumps(
                     { "list-all-images": r.json() }, indent=2)
         elif r.status_code:
-            message = "Error! Http status code {}".format(status_code)
+            message = "Error! Http status code {}".format(r.status_code)
         return json.dumps({ "message" : message })
         return original_function
     return wrapper
@@ -169,7 +175,7 @@ def status_set(args, consumer_data,
                    " set to {}.".format(status))
     else:
         message = ("Oh no! Http Error"
-                   " Code {}".format(status_code))
+                   " Code {}".format(r.status_code))
     if manual:
         return json.dumps({ "message" : message })
     else:

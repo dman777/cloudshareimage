@@ -37,3 +37,14 @@ input:checked + label {
    text-align: center;
    margin-left: 80%;
    }
+   
+.footer {
+    height: 50px;
+    color: #222;
+    border-color: #080808;
+}
+
+.bnavbar {
+    padding-top: 15px;
+    height: 75px;
+}

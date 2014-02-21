@@ -17,17 +17,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/"></span>Image Share<sup>beta 1.0</sup></a>
+        <a class="navbar-brand" href="/"></span>Image Share<sup>Version 1.0</sup></a>
 </div>
 
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-        <li><a id="shareImage" href="#">Share Image</a></li>
-        <li><a id="setSatus" href="#">Set Status(consumer)</a></li>
-        <li><a id="listCustomImages" href="#">List Custom Images</a></li>
-        <li><a id="listAllImages" href="#">List All Images</a></li>
-        <li><a id="imageDetail" href="#">Show Image Detail</a></li>
+        <li id="shareImage" class="active"><a href="#shareImage">Share Image</a></li>
+        <li id="addMember"><a href="#addMember">Add Member</a></li>
+        <li id="setSatus"><a href="#setSatus">Set Status(consumer)</a></li>
+        <li id="listCustomImages"><a href="#listCustomImages">List Custom Images</a></li>
+        <li id="listAllImages"><a href="#listAllImages">List All Images</a></li>
+        <li id="imageDetail"><a href="#imageDetail">Show Image Detail</a></li>
     </ul>
 </div><!-- /.navbar-collapse -->
 </nav>
@@ -73,6 +74,43 @@
             <div class="form-group well col-md-5">
                 <label for="imageUuid">Image UUID</label>
                 <input type="text" class="form-control" name="image_uuid" id="imageUuid" placeholder="Enter images's image Uuid" >
+            </div>
+            <div class="col-md-5">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <div id="addMemberContainer">
+        <div class="well col-md-3 titleBox">
+            <div>
+                <h1>Add Member<br><small>Add a member to be shared</small></h1>
+            </div>
+        </div>
+        <form id="addMemberForm">
+            <div class="form-group btn-group-ls well col-md-5">
+                <legend>Region</legend>
+                <input class="form-inline" type="radio" name="region" id="IAD5" value="IAD" checked>
+                <label for="IAD5" class="btn btn-default region">Virginia</label>
+                <input class="form-inline" type="radio" name="region" id="ORD5" value="ORD">
+                <label for="ORD5" class="btn btn-default region">Chicago</label>
+                <input class="form-inline" type="radio" name="region" id="DFW5" value="DFW">
+                <label for="DFW5" class="btn btn-default region">Dallas</label>
+                <input type="radio" id="HKG5" name="region" value="HKG">
+                <label for="HKG5" class="btn btn-default region">Hong Kong</label>
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="producerUsername">Producer Username</label>
+                <input type="text" class="form-control" name="producer_username" id="producerUsername" placeholder="Enter producer's username" >
+                <label for="producerApiKey">Producer Api Key</label>
+                <input type="text" class="form-control" name="producer_apikey" id="producerApiKey" placeholder="Enter producer's api key" >
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="imageUuid">Image UUID</label>
+                <input type="text" class="form-control" name="image_uuid" id="imageUuid" placeholder="Enter images's image Uuid" >
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="consumerAddId">Consumer/Member account id to add</label>
+                <input type="text" class="form-control" name="consumer_tenantid" id="consumer_tenantid" placeholder="Enter member id" >
             </div>
             <div class="col-md-5">
                 <input type="submit" value="Submit" class="btn btn-primary">
@@ -211,6 +249,13 @@
                 <input type="submit" value="Submit" class="btn btn-primary">
             </div>
         </form>
+    </div>
+    <div class="footer navbar-inverse navbar-fixed-bottom text-center">
+            <div class="container">
+            <p style="color:gray">Tool Mainteined by 
+            <a style="color:cyan" href="mailto: tron@rackspace.com">Darin Hensley</a>. <a style="color:cyan" href="https://github.rackspace.com/tron/" target="_blank">Github.</a>
+            </p>
+        </div>
     </div>
 </body>
 <script style="text/javascript" src="static/js/main.js"></script>

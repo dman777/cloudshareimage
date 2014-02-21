@@ -28,6 +28,24 @@
     display: none;
 }
 
+#listAllImagesContainer {
+    display: none;
+}
+
+#imageDetailContainer {
+    display: none;
+}
+
+#addMemberContainer {
+    display: none;
+}
+
+a:active {
+    color: #fff !important;
+    background-color: #080808 !important;
+}
+
+
 #footer {
   background: black;
   padding-top: 60px;

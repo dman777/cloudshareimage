@@ -19,7 +19,7 @@ function submitForm(url, formData,
     xml.onreadystatechange = function () {
         if (xml.readyState === 4) {
             if (xml.status === 200){
-                var responseText = xml.responseText;
+                var responseText = JSON.parse(xml.responseText);
                 successCallBack(messageBoxElement,
                         responseText);
             } else {
@@ -57,7 +57,6 @@ function getForm(formId) {
 
     function nonImageList(messageBoxElement,
             responseText) {
-                var result = JSON.parse(responseText);
                 messageBoxElement.innerHTML = result["message"]; }
     function imageList(messageBoxElement,
             responseText) {
@@ -66,11 +65,9 @@ function getForm(formId) {
                     + " Please make sure your browser allows"
                     + " pop ups from this site.";
                 messageBoxElement.innerHTML = msg;
-                var newWindow = window.open("","Custom Images List",
-                        "height=1000,width=1000",
-                        "resizable,scrollbars,status");
-                json = JSON.stringify(responseText, null, 4)
-                newWindow.document.write(json);}
+                var newWindow = window.open("","_tab");
+                json = JSON.stringify(responseText, null, 2)
+                newWindow.document.write('<pre>'+json+'</pre>');}
 
     switch(formId) {
         case "shareImageForm":
@@ -89,10 +86,18 @@ function getForm(formId) {
                     messageBoxElement, imageList);
             break;
         case "listAllImagesForm":
-            url = '/imagedetailform';
+            url = '/listallimagesform';
             submitForm(url, formData,
                     messageBoxElement, imageList);
             break;
+        case "addMemberForm":
+            url = '/addmemberform';
+            submitForm(url, formData,
+                    messageBoxElement, imageList);
+        case "imageDetailForm":
+            url = '/imagedetailform';
+            submitForm(url, formData,
+                    messageBoxElement, imageList);
 
     }
 
@@ -101,6 +106,7 @@ function getForm(formId) {
 function disableForms(activeForm) {
     var elements = ["shareImageContainer", 
         "setStatusContainer",
+        "addMemberContainer",
         "listAllImagesContainer",
         "imageDetailContainer",
         "listCustomImagesContainer"];
@@ -121,7 +127,7 @@ function disableForms(activeForm) {
 
 
 function click(event) {
-    var arg = event.target.id;
+    var arg = event.target.offsetParent.id;
     switch(arg) {
         case "exitButton":
             toggleLightbox();
@@ -130,6 +136,8 @@ function click(event) {
             disableForms("shareImageContainer");
             break;
         case "setSatus":
+            document.getElementsByClassName("active")[0].classList.remove("active");
+            document.getElementById(arg).classList.add("active");
             disableForms("setStatusContainer");
             break;
         case "listCustomImages":
@@ -141,7 +149,34 @@ function click(event) {
         case "imageDetail":
             disableForms("imageDetailContainer");
             break;
+        case "addMember":
+            disableForms("addMemberContainer");
+            break;
     }
+}
+
+function activeNavElement() {
+    //Enter your slugs here
+    var urlSlug = [ 
+        "shareImage",
+        "setSatus",
+        "listCustomImages",
+        "listAllImages",
+        "imageDetail",
+        "addMember"];
+    //Enter the default URL here.
+    //ex.: url(r'^$', OpenRequestList.as_view())
+    var homeSlug = "shareImage"
+
+    var slugName = window.location.pathname.split('/#')[1];
+    var elementActive;
+    urlSlug.some(function (slugList) {
+        if (slugName == slugList) {
+            elementActive = slugList;
+            return true; }});
+    elementActive = typeof elementActive !== "undefined" ? elementActive: homeSlug;
+    var navElement = document.getElementById(elementActive);
+    navElement.classList.add("active");
 }
 
 
