@@ -19,9 +19,9 @@ function submitForm(url, formData,
     xml.onreadystatechange = function () {
         if (xml.readyState === 4) {
             if (xml.status === 200){
-                var responseText = JSON.parse(xml.responseText);
+                var result = JSON.parse(xml.responseText);
                 successCallBack(messageBoxElement,
-                        responseText);
+                        result);
             } else {
                 messageBoxElement.innerHTML = "\
                                             Snap!...looks like there \
@@ -56,17 +56,17 @@ function getForm(formId) {
     }
 
     function nonImageList(messageBoxElement,
-            responseText) {
+            result) {
                 messageBoxElement.innerHTML = result["message"]; }
     function imageList(messageBoxElement,
-            responseText) {
+            result) {
                 msg = "Success! Image list will "
                     + "now show in a new window." 
                     + " Please make sure your browser allows"
                     + " pop ups from this site.";
                 messageBoxElement.innerHTML = msg;
                 var newWindow = window.open("","_tab");
-                json = JSON.stringify(responseText, null, 2)
+                json = JSON.stringify(result, null, 2)
                 newWindow.document.write('<pre>'+json+'</pre>');}
 
     switch(formId) {
@@ -93,11 +93,13 @@ function getForm(formId) {
         case "addMemberForm":
             url = '/addmemberform';
             submitForm(url, formData,
-                    messageBoxElement, imageList);
+                    messageBoxElement, nonImageList);
+            break;
         case "imageDetailForm":
             url = '/imagedetailform';
             submitForm(url, formData,
                     messageBoxElement, imageList);
+            break;
 
     }
 
@@ -125,31 +127,44 @@ function disableForms(activeForm) {
     }
 }
 
+function fixNavBarActive(element) {
+    document.getElementsByClassName("active")[0].classList.remove("active");
+    document.getElementById(element).classList.add("active");
+}
+
 
 function click(event) {
+    if (event.target.id == "exitButton"){
+        toggleLightbox();
+        return; }
+
     var arg = event.target.offsetParent.id;
     switch(arg) {
         case "exitButton":
             toggleLightbox();
             break;
         case "shareImage":
+            fixNavBarActive(arg);
             disableForms("shareImageContainer");
             break;
         case "setSatus":
-            document.getElementsByClassName("active")[0].classList.remove("active");
-            document.getElementById(arg).classList.add("active");
+            fixNavBarActive(arg);
             disableForms("setStatusContainer");
             break;
         case "listCustomImages":
+            fixNavBarActive(arg);
             disableForms("listCustomImagesContainer");
             break;
         case "listAllImages":
+            fixNavBarActive(arg);
             disableForms("listAllImagesContainer");
             break;
         case "imageDetail":
+            fixNavBarActive(arg);
             disableForms("imageDetailContainer");
             break;
         case "addMember":
+            fixNavBarActive(arg);
             disableForms("addMemberContainer");
             break;
     }

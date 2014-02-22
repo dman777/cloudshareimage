@@ -6,7 +6,7 @@ from flask import request
 from flask import url_for
 
 from modules.auth import authenticate
-from modules.actions import image_list_detail, list_all_images, images_custom_list, image_share, status_set
+from modules.actions import member_add, image_list_detail, list_all_images, images_custom_list, image_share, status_set
 
 @app.route('/')
 def index():
@@ -29,7 +29,7 @@ class Authentication(object):
         if form_data.get('region', None):
             self.region = form_data['region']
         if form_data.get('consumer_tenantid', None):
-            self.producer_data = form_data['consumer_tenantid']
+            self.args['consumer_tenantid'] = form_data['consumer_tenantid']
         if form_data.get('image_uuid', None):
             self.args["uuid"] = form_data['image_uuid']
         if form_data.get('member_status', None):
@@ -114,7 +114,7 @@ class ListAllImagesForm(MethodView, Authentication):
             return response
 app.add_url_rule('/listallimagesform', view_func=ListAllImagesForm.as_view('listallimagesform'))
 
-class imageDetailForm(MethodView, Authentication):
+class ImageDetailForm(MethodView, Authentication):
     def __init__(self):
         Authentication.__init__(self, request)
 
@@ -123,14 +123,13 @@ class imageDetailForm(MethodView, Authentication):
     
     def post(self):
         response = self.check_auth()
-        print self.producer_data
         if response:
             return response
         response = image_list_detail(self.args,
                 self.producer_data)
         if response:
             return response
-app.add_url_rule('/imagedetailform', view_func=imageDetailForm.as_view('imagedetailform'))
+app.add_url_rule('/imagedetailform', view_func=ImageDetailForm.as_view('imagedetailform'))
 
 class AddMemberForm(MethodView, Authentication):
     def __init__(self):
@@ -141,13 +140,12 @@ class AddMemberForm(MethodView, Authentication):
     
     def post(self):
         response = self.check_auth()
-        print self.producer_data
         if response:
             return response
         response = member_add(self.args,
                 self.producer_data)
         if response:
             return response
-app.add_url_rule('/addimageform', view_func=AddMemberForm.as_view('addimageform'))
+app.add_url_rule('/addmemberform', view_func=AddMemberForm.as_view('addmemberform'))
 
 

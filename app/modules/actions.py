@@ -52,8 +52,8 @@ def member_add(args, producer_data,
                remove=False, consumer_tenant=None,
                manual=True):
     # if called from command line instead of image_share()
-    if producer_data.get('consumer_tenantid', None):
-        consumer_tenant = args['consumer_tenantid']
+    #if producer_data.get('consumer_tenantid', None):
+    consumer_tenant = args['consumer_tenantid']
 
     producer_tenant, producer_token, producer_url = itemgetter('tenant',
             'token', 'endpoint')(producer_data)
@@ -83,7 +83,7 @@ def member_add(args, producer_data,
         if status_code == 409:
              message = "Member already exists!"
         else:
-            print status_code
+            message = "Error! Http status code: "+ str(status_code)
 
     if manual:
         return json.dumps({ "message" : message })
