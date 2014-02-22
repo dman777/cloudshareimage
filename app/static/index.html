@@ -25,6 +25,7 @@
     <ul class="nav navbar-nav">
         <li id="shareImage" class="active"><a href="#shareImage">Share Image</a></li>
         <li id="addMember"><a href="#addMember">Add Member</a></li>
+        <li id="removeMember"><a href="#removeMember">Remove Member</a></li>
         <li id="setSatus"><a href="#setSatus">Set Status(consumer)</a></li>
         <li id="listCustomImages"><a href="#listCustomImages">List Custom Images</a></li>
         <li id="listAllImages"><a href="#listAllImages">List All Images</a></li>
@@ -109,7 +110,44 @@
                 <input type="text" class="form-control" name="image_uuid" id="imageUuid" placeholder="Enter images's image Uuid" >
             </div>
             <div class="form-group well col-md-5">
-                <label for="consumerAddId">Consumer/Member account id to add</label>
+                <label for="consumerAddId">Consumer/Member account id number to add</label>
+                <input type="text" class="form-control" name="consumer_tenantid" id="consumer_tenantid" placeholder="Enter member id" >
+            </div>
+            <div class="col-md-5">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <div id="removeMemberContainer">
+        <div class="well col-md-3 titleBox">
+            <div>
+                <h1>Remove Member<br><small>Remove a member to be shared</small></h1>
+            </div>
+        </div>
+        <form id="removeMemberForm">
+            <div class="form-group btn-group-ls well col-md-5">
+                <legend>Region</legend>
+                <input class="form-inline" type="radio" name="region" id="IAD6" value="IAD" checked>
+                <label for="IAD6" class="btn btn-default region">Virginia</label>
+                <input class="form-inline" type="radio" name="region" id="ORD6" value="ORD">
+                <label for="ORD6" class="btn btn-default region">Chicago</label>
+                <input class="form-inline" type="radio" name="region" id="DFW6" value="DFW">
+                <label for="DFW6" class="btn btn-default region">Dallas</label>
+                <input type="radio" id="HKG6" name="region" value="HKG">
+                <label for="HKG6" class="btn btn-default region">Hong Kong</label>
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="producerUsername">Producer Username</label>
+                <input type="text" class="form-control" name="producer_username" id="producerUsername" placeholder="Enter producer's username" >
+                <label for="producerApiKey">Producer Api Key</label>
+                <input type="text" class="form-control" name="producer_apikey" id="producerApiKey" placeholder="Enter producer's api key" >
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="imageUuid">Image UUID</label>
+                <input type="text" class="form-control" name="image_uuid" id="imageUuid" placeholder="Enter images's image Uuid" >
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="consumerAddId">Consumer/Member account id number to add</label>
                 <input type="text" class="form-control" name="consumer_tenantid" id="consumer_tenantid" placeholder="Enter member id" >
             </div>
             <div class="col-md-5">
