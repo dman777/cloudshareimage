@@ -6,7 +6,7 @@ from flask import request
 from flask import url_for
 
 from modules.auth import authenticate
-from modules.actions import member_add, image_list_detail, list_all_images, images_custom_list, image_share, status_set
+from modules.actions import member_list, member_add, image_list_detail, list_all_images, images_custom_list, image_share, status_set
 
 @app.route('/')
 def index():
@@ -147,5 +147,42 @@ class AddMemberForm(MethodView, Authentication):
         if response:
             return response
 app.add_url_rule('/addmemberform', view_func=AddMemberForm.as_view('addmemberform'))
+
+
+class RemoveMemberForm(MethodView, Authentication):
+    def __init__(self):
+        Authentication.__init__(self, request)
+
+    def get(self):
+        pass
+    
+    def post(self):
+        response = self.check_auth()
+        if response:
+            return response
+        response = member_add(self.args,
+                self.producer_data, 
+                remove=True)
+        if response:
+            return response
+app.add_url_rule('/removememberform', view_func=RemoveMemberForm.as_view('removememberform'))
+
+class MemberListForm(MethodView, Authentication):
+    def __init__(self):
+        Authentication.__init__(self, request)
+
+    def get(self):
+        pass
+    
+    def post(self):
+        response = self.check_auth()
+        if response:
+            return response
+        response = member_list(self.args,
+                self.producer_data)
+        if response:
+            return response
+app.add_url_rule('/memberlistform', view_func=MemberListForm.as_view('memberlistform'))
+
 
 

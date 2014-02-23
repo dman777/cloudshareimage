@@ -15,29 +15,12 @@
     text-align: center;
 }
 
+[id*="Container"] {
+    display: none;
+}
 
 #shareImageContainer {
     display: block;
-}
-
-#setStatusContainer {
-    display: none;
-}
-
-#listCustomImagesContainer {
-    display: none;
-}
-
-#listAllImagesContainer {
-    display: none;
-}
-
-#imageDetailContainer {
-    display: none;
-}
-
-#addMemberContainer {
-    display: none;
 }
 
 a:active {

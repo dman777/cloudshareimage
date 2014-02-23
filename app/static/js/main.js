@@ -95,8 +95,18 @@ function getForm(formId) {
             submitForm(url, formData,
                     messageBoxElement, nonImageList);
             break;
+        case "removeMemberForm":
+            url = '/removememberform';
+            submitForm(url, formData,
+                    messageBoxElement, nonImageList);
+            break;
         case "imageDetailForm":
             url = '/imagedetailform';
+            submitForm(url, formData,
+                    messageBoxElement, imageList);
+            break;
+        case "memberListForm":
+            url = '/memberlistform';
             submitForm(url, formData,
                     messageBoxElement, imageList);
             break;
@@ -109,6 +119,8 @@ function disableForms(activeForm) {
     var elements = ["shareImageContainer", 
         "setStatusContainer",
         "addMemberContainer",
+        "memberListContainer",
+        "removeMemberContainer",
         "listAllImagesContainer",
         "imageDetailContainer",
         "listCustomImagesContainer"];
@@ -167,31 +179,15 @@ function click(event) {
             fixNavBarActive(arg);
             disableForms("addMemberContainer");
             break;
+        case "removeMember":
+            fixNavBarActive(arg);
+            disableForms("removeMemberContainer");
+            break;
+        case "memberList":
+            fixNavBarActive(arg);
+            disableForms("memberListContainer");
+            break;
     }
-}
-
-function activeNavElement() {
-    //Enter your slugs here
-    var urlSlug = [ 
-        "shareImage",
-        "setSatus",
-        "listCustomImages",
-        "listAllImages",
-        "imageDetail",
-        "addMember"];
-    //Enter the default URL here.
-    //ex.: url(r'^$', OpenRequestList.as_view())
-    var homeSlug = "shareImage"
-
-    var slugName = window.location.pathname.split('/#')[1];
-    var elementActive;
-    urlSlug.some(function (slugList) {
-        if (slugName == slugList) {
-            elementActive = slugList;
-            return true; }});
-    elementActive = typeof elementActive !== "undefined" ? elementActive: homeSlug;
-    var navElement = document.getElementById(elementActive);
-    navElement.classList.add("active");
 }
 
 

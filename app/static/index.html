@@ -26,6 +26,7 @@
         <li id="shareImage" class="active"><a href="#shareImage">Share Image</a></li>
         <li id="addMember"><a href="#addMember">Add Member</a></li>
         <li id="removeMember"><a href="#removeMember">Remove Member</a></li>
+        <li id="memberList"><a href="#listMembers">Member List</a></li>
         <li id="setSatus"><a href="#setSatus">Set Status(consumer)</a></li>
         <li id="listCustomImages"><a href="#listCustomImages">List Custom Images</a></li>
         <li id="listAllImages"><a href="#listAllImages">List All Images</a></li>
@@ -111,7 +112,7 @@
             </div>
             <div class="form-group well col-md-5">
                 <label for="consumerAddId">Consumer/Member account id number to add</label>
-                <input type="text" class="form-control" name="consumer_tenantid" id="consumer_tenantid" placeholder="Enter member id" >
+                <input type="text" class="form-control" name="consumer_tenantid" id="consumer_tenantid" placeholder="Enter member account id number" >
             </div>
             <div class="col-md-5">
                 <input type="submit" value="Submit" class="btn btn-primary">
@@ -147,8 +148,41 @@
                 <input type="text" class="form-control" name="image_uuid" id="imageUuid" placeholder="Enter images's image Uuid" >
             </div>
             <div class="form-group well col-md-5">
-                <label for="consumerAddId">Consumer/Member account id number to add</label>
-                <input type="text" class="form-control" name="consumer_tenantid" id="consumer_tenantid" placeholder="Enter member id" >
+                <label for="consumerAddId">Consumer/Member account id number to remove</label>
+                <input type="text" class="form-control" name="consumer_tenantid" id="consumer_tenantid" placeholder="Enter member account id number" >
+            </div>
+            <div class="col-md-5">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+    <div id="memberListContainer">
+        <div class="well col-md-3 titleBox">
+            <div>
+                <h1>Member List<br><small>List all members of a image</small></h1>
+            </div>
+        </div>
+        <form id="memberListForm">
+            <div class="form-group btn-group-ls well col-md-5">
+                <legend>Region</legend>
+                <input class="form-inline" type="radio" name="region" id="IAD7" value="IAD" checked>
+                <label for="IAD7" class="btn btn-default region">Virginia</label>
+                <input class="form-inline" type="radio" name="region" id="ORD7" value="ORD">
+                <label for="ORD7" class="btn btn-default region">Chicago</label>
+                <input class="form-inline" type="radio" name="region" id="DFW7" value="DFW">
+                <label for="DFW7" class="btn btn-default region">Dallas</label>
+                <input type="radio" id="HKG7" name="region" value="HKG">
+                <label for="HKG7" class="btn btn-default region">Hong Kong</label>
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="producerUsername">Username</label>
+                <input type="text" class="form-control" name="producer_username" id="producerUsername" placeholder="Enter producer's OR consumer's username" >
+                <label for="producerApiKey">Api Key</label>
+                <input type="text" class="form-control" name="producer_apikey" id="producerApiKey" placeholder="Enter producer's OR consumer api key" >
+            </div>
+            <div class="form-group well col-md-5">
+                <label for="imageUuid">Image UUID</label>
+                <input type="text" class="form-control" name="image_uuid" id="imageUuid" placeholder="Enter images's image Uuid" >
             </div>
             <div class="col-md-5">
                 <input type="submit" value="Submit" class="btn btn-primary">

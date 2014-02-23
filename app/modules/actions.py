@@ -53,7 +53,8 @@ def member_add(args, producer_data,
                manual=True):
     # if called from command line instead of image_share()
     #if producer_data.get('consumer_tenantid', None):
-    consumer_tenant = args['consumer_tenantid']
+    if manual == True:
+        consumer_tenant = args['consumer_tenantid']
 
     producer_tenant, producer_token, producer_url = itemgetter('tenant',
             'token', 'endpoint')(producer_data)
@@ -71,17 +72,26 @@ def member_add(args, producer_data,
         r = do_raw_request(url, producer_token, mode="delete")
         if r.status_code == 204:
             # Delete API does not return anything
-            message = "Success"
+            message = ("Success! Member {}"
+                       " has been successfully"
+                       " removed!".format(consumer_tenant))
         elif r.status_code == 404:
             message = ("User {} doesn't exist"
-                  " as a member").format(consumer_tenant)
+                  " as a member!").format(consumer_tenant)
+        else:
+            message = "Error! Http status code: "+ str(status_code)
     else:
         print("\nAttempting to add consumer {}"
               " as member to image {}...".format(consumer_tenant, uuid))
         body, status_code = do_request(
             url, producer_token, json_data, mode="post")
         if status_code == 409:
-             message = "Member already exists!"
+             message = ("Member {} already "
+                        "exists for that"
+                        " image!".format(consumer_tenant))
+        elif status_code == 200:
+            message = ("Member {} has been "
+                       "successfully added!".format(consumer_tenant))
         else:
             message = "Error! Http status code: "+ str(status_code)
 
@@ -131,7 +141,8 @@ def member_list(args, producer_data):
     # in argparse, consumer or producer data can be used because
     # consumer is aliased to producer.
     uuid = args['uuid']
-    producer_data[2] = producer_data[2] + "/" + uuid + "/members"
+    producer_data["endpoint"] = (producer_data["endpoint"]
+                                 + "/" + uuid + "/members")
 
 @raw_list
 def list_all_images(args, producer_data):
