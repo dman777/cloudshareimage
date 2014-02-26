@@ -2,8 +2,10 @@
 body {
     padding-top: 100px;
 }
-input#submit-id-submit.btn-primary {
+input.btn-primary {
     margin-left: 42.8%;
+    margin-left: 0%;
+    margin-bottom: 50px;
 }
 
 
