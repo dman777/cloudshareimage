@@ -60,14 +60,19 @@ function getForm(formId) {
                 messageBoxElement.innerHTML = result["message"]; }
     function imageList(messageBoxElement,
             result) {
-                msg = "Success! Image list will "
-                    + "now show in a new window." 
-                    + " Please make sure your browser allows"
-                    + " pop ups from this site.";
-                messageBoxElement.innerHTML = msg;
-                var newWindow = window.open("","_tab");
-                json = JSON.stringify(result, null, 2)
-                newWindow.document.write('<pre>'+json+'</pre>');}
+                //Ugly fix but oh well
+                if (result["message"]) {
+                    messageBoxElement.innerHTML = result["message"];
+                } else {
+                    msg = "Success! Image list will "
+                        + "now show in a new window." 
+                        + " Please make sure your browser allows"
+                        + " pop ups from this site.";
+                    messageBoxElement.innerHTML = msg;
+                    var newWindow = window.open("","_tab");
+                    json = JSON.stringify(result, null, 2)
+                    newWindow.document.write('<pre>'+json+'</pre>');}
+            }
 
     switch(formId) {
         case "shareImageForm":
