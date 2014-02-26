@@ -39,7 +39,7 @@ input:checked + label {
    }
    
 .footer {
-    height: 50px;
+    height: 35px;
     color: #222;
     border-color: #080808;
 }
