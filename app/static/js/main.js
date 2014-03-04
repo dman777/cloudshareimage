@@ -155,7 +155,7 @@ function click(event) {
         toggleLightbox();
         return; }
 
-    var arg = event.target.offsetParent.id;
+    var arg = event.target.id || event.target.offsetParent.id;
     switch(arg) {
         case "exitButton":
             toggleLightbox();
