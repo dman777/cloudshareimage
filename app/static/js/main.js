@@ -192,6 +192,9 @@ function click(event) {
             fixNavBarActive(arg);
             disableForms("memberListContainer");
             break;
+        case "docs":
+            window.open("http://cloud-share-image.readthedocs.org/en/latest/");
+            break;
     }
 }
 
