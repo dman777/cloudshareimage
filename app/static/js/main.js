@@ -202,7 +202,7 @@ function click(event) {
 window.onload = function() {
     document.addEventListener("submit", function(event) {
         event.preventDefault();
-        getForm(event.srcElement.id);
+        getForm(event.target.id);
     }, false);
     document.addEventListener("click", click, false); 
 }
