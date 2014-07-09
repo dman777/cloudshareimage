@@ -7,7 +7,10 @@ def authenticate(username, apikey, region):
     """Authenticates user using apikey"""
     region = region.upper()
     user_data = {}
-    url = 'https://identity.api.rackspacecloud.com/v2.0/tokens'
+    if region == "LON":
+      url = "https://lon.identity.api.rackspacecloud.com/v2.0/tokens"
+    else:
+      url = 'https://identity.api.rackspacecloud.com/v2.0/tokens'
     #print 'Initializing token for {}....'.format(username),
     try:
         jsonreq = {
